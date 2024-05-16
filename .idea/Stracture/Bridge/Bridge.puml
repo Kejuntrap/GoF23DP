@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Interface Device{
+    + isEnabled():boolean
+    + enable():void
+    + disable():void
+    + getVolume():int
+    + setVolume(percent:int):void
+    + getChannel():int
+    + setChannel(channel:int):void
+    + printStatus():void
+}
+
+interface Remote{
+    + power():void
+    + volumeDown():void
+    + volumeUp():void
+    + channelDown():void
+    + channelUp():void
+}
+
+class Radio{
+    - on:boolean
+    - volume:int
+    - channel:int
+}
+
+class Tv{
+    - on:boolean
+    - volume:int
+    - channel:int
+}
+
+class BasicRemote {
+    # device:Device
+    + BasicRemote():void
+    + BasicRemote(device):void
+    + power():void
+    + volumeDown():void
+    + channelDown():void
+    + channelUp():void
+}
+
+class AdvancedRemote {
+    + AdvancedRemote(device):void
+    + mute():void
+}
+
+class Demo {
+    {static} + main():void
+    {static} + testDevice(device):void
+}
+
+class AdvancedRemote extends BasicRemote
+class BasicRemote implements Remote
+class Radio implements Device
+class Tv implements Device
+@enduml
